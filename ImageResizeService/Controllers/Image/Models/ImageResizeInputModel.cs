@@ -1,4 +1,4 @@
-using SixLabors.Primitives;
+using System.Drawing;
 
 namespace ImageResizeService.Controllers.Image.Models
 {
