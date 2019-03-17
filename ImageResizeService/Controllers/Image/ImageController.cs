@@ -37,7 +37,7 @@ namespace ImageResizeService.Controllers.Image
 
                 return File(modifiedImage.ImageAsBytes, modifiedImage.ImageFormat);
             }
-            catch (Exception e)
+            catch (ArgumentException e)
             {
                 return BadRequest(e.Message);
             }
