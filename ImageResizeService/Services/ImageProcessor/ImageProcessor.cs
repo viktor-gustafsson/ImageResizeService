@@ -69,7 +69,7 @@ namespace ImageResizeService.Services.ImageProcessor
 
         private async Task<byte[]> GetImageFromSourceAsByteArray(string imageUrl)
         {
-            var bytes = await _retryPolicy.ExecuteAsync(async () =>
+            return await _retryPolicy.ExecuteAsync(async () =>
             {
                 var response = await _httpClient.GetAsync(imageUrl);
 
@@ -79,8 +79,6 @@ namespace ImageResizeService.Services.ImageProcessor
 
                 return await response.Content.ReadAsByteArrayAsync();
             });
-
-            return bytes;
         }
     }
 }
