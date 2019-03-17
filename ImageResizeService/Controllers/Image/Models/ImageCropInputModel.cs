@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using ImageResizeService.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using SixLabors.Primitives;
 
 namespace ImageResizeService.Controllers.Image.Models
 {

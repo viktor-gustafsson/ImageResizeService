@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using ImageResizeService.Controllers.Image.Models;
 using ImageResizeService.Services.ImageProcessor.Models;
 using ImageResizeService.Services.ImageService;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SkiaSharp;
 
 namespace ImageResizeService.Services.ImageProcessor
 {
@@ -21,56 +23,24 @@ namespace ImageResizeService.Services.ImageProcessor
         {
             var image = await _imageService.GetImage(imageResizeInputModel.Url);
 
-            var destRect = new Rectangle(0, 0, imageResizeInputModel.Width, imageResizeInputModel.Height);
-            var destImage = GetDestinationImage(imageResizeInputModel, image);
-
-            using (var graphics = Graphics.FromImage(destImage))
+            var info = new SKImageInfo(imageResizeInputModel.Height, imageResizeInputModel.Width);
+            using (var surface = SKSurface.Create(info))
             {
-                SetImageProperties(graphics);
+                var surfaceCanvas = surface.Canvas;
+                surfaceCanvas.DrawBitmap(image, new SKRect(0, 0, image.Width, image.Height),
+                    new SKRect(0, 0, imageResizeInputModel.Width, imageResizeInputModel.Height));
 
-                using (var wrapMode = new ImageAttributes())
+                using (var encodedImage = surface.Snapshot())
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                    var data = encodedImage.Encode(SKEncodedImageFormat.Jpeg, 100);
+                    return new ModifiedImage("image/jpeg", data.ToArray());
                 }
             }
-
-            return await _imageService.SaveImage(destImage, image.RawFormat.Guid);
         }
 
-        public async Task<ModifiedImage> CropImage(ImageCropInputModel imageCropInputModel)
+        public Task<ModifiedImage> CropImage(ImageCropInputModel imageCropInputModel)
         {
-            var image = await _imageService.GetImage(imageCropInputModel.Url);
-
-            var destRect = new Rectangle(0, 0, imageCropInputModel.Width, imageCropInputModel.Height);
-            var srcRect = new RectangleF(imageCropInputModel.X, imageCropInputModel.Y, imageCropInputModel.WidthToCrop,
-                imageCropInputModel.HeightToCrop);
-
-            var destImage = GetDestinationImage(imageCropInputModel, image);
-
-            using (var graphics = Graphics.FromImage(destImage))
-            {
-                SetImageProperties(graphics);
-                graphics.DrawImage(image, destRect, srcRect, GraphicsUnit.Pixel);
-            }
-
-            return await _imageService.SaveImage(destImage, image.RawFormat.Guid);
-        }
-
-        private static Bitmap GetDestinationImage(ImageConversionBaseModel imageCropInputModel, Image image)
-        {
-            var destImage = new Bitmap(image, imageCropInputModel.Width, imageCropInputModel.Height);
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-            return destImage;
-        }
-
-        private static void SetImageProperties(Graphics graphics)
-        {
-            graphics.CompositingMode = CompositingMode.SourceCopy;
-            graphics.CompositingQuality = CompositingQuality.HighQuality;
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphics.SmoothingMode = SmoothingMode.HighQuality;
-            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            throw new System.NotImplementedException();
         }
     }
 }

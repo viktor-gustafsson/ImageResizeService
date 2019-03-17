@@ -1,7 +1,3 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats;
-using SixLabors.ImageSharp.PixelFormats;
-
 namespace ImageResizeService.Services.ImageProcessor.Models
 {
     public class ModifiedImage
