@@ -24,7 +24,8 @@ namespace ImageResizeService
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //Add services
-            services.AddScoped<IImageProcessor, ImageProcessor>();
+//            services.AddScoped<IImageProcessor, ImageSharp>();
+            services.AddScoped<IImageProcessor, Drawing>();
             
             //Configure settings
             services.ConfigureSettings<HttpClientRetrySettings>(Configuration.GetSection("RetrySettings"));

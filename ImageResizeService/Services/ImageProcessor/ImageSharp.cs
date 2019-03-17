@@ -13,12 +13,12 @@ using SixLabors.Primitives;
 
 namespace ImageResizeService.Services.ImageProcessor
 {
-    public class ImageProcessor : IImageProcessor
+    public class ImageSharp : IImageProcessor
     {
         private readonly HttpClient _httpClient;
         private readonly AsyncRetryPolicy _retryPolicy;
 
-        public ImageProcessor(HttpClientRetrySettings httpClientRetrySettings)
+        public ImageSharp(HttpClientRetrySettings httpClientRetrySettings)
         {
             _httpClient = new HttpClient();
 
