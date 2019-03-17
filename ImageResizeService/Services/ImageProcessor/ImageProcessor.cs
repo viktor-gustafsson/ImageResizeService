@@ -33,7 +33,7 @@ namespace ImageResizeService.Services.ImageProcessor
 
             imageModel.Image.Mutate(context => context.Resize(imageResizeInputModel.Size));
 
-            return SaveImage(imageModel);
+            return await SaveImage(imageModel);
         }
 
         public async Task<ModifiedImage> CropImage(ImageCropInputModel imageCropInputModel)
@@ -44,7 +44,7 @@ namespace ImageResizeService.Services.ImageProcessor
 
             imageModel.Image.Mutate(context => context.Crop(cropInstructions));
 
-            return SaveImage(imageModel);
+            return await SaveImage(imageModel);
         }
 
         private async Task<ImageModel> GetImage(string imageUrl)
@@ -56,15 +56,18 @@ namespace ImageResizeService.Services.ImageProcessor
             return new ImageModel(image, imageFormat);
         }
 
-        private static ModifiedImage SaveImage(ImageModel imageModel)
+        private static async Task<ModifiedImage> SaveImage(ImageModel imageModel)
         {
-            using (var imageAsStream = new MemoryStream())
+            return await Task.Run(() =>
             {
-                imageModel.Image.Save(imageAsStream, imageModel.ImageFormat);
+                using (var imageAsStream = new MemoryStream())
+                {
+                    imageModel.Image.Save(imageAsStream, imageModel.ImageFormat);
 
-                return new ModifiedImage(imageModel.ImageFormat.DefaultMimeType,
-                    imageAsStream.ToArray());
-            }
+                    return new ModifiedImage(imageModel.ImageFormat.DefaultMimeType,
+                        imageAsStream.ToArray());
+                }
+            });
         }
 
         private async Task<byte[]> GetImageFromSourceAsByteArray(string imageUrl)
