@@ -1,4 +1,4 @@
-# Imagerecropperandresizer
+# Imagecropperandresizer
 
 Imagerecropperandresizer is a .Net Core web api that handles image cropping and resizing.
 
