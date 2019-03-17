@@ -16,7 +16,17 @@ namespace ImageResizeService.Controllers.Image.Models
         [SizeValidator]
         [FromQuery(Name = "y")]
         public int Y { get; set; }
-
+        
+        [Required]
+        [SizeValidator]
+        [FromQuery(Name = "widthtocrop")]
+        public int WidthToCrop { get; set; }   
+        
+        [Required]
+        [SizeValidator]
+        [FromQuery(Name = "heighttocrop")]
+        public int HeightToCrop { get; set; }
+        
         public Point Point => new Point(X, Y);
         public Size Size => new Size(Width, Height);
     }
