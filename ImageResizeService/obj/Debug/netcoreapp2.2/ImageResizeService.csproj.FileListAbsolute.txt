@@ -1,0 +1,14 @@
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\bin\Debug\netcoreapp2.2\ImageResizeService.deps.json
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\bin\Debug\netcoreapp2.2\ImageResizeService.runtimeconfig.json
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\bin\Debug\netcoreapp2.2\ImageResizeService.runtimeconfig.dev.json
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\bin\Debug\netcoreapp2.2\ImageResizeService.dll
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\bin\Debug\netcoreapp2.2\ImageResizeService.pdb
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.csprojAssemblyReference.cache
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.csproj.CoreCompileInputs.cache
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.RazorAssemblyInfo.cache
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.RazorAssemblyInfo.cs
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.AssemblyInfoInputs.cache
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.AssemblyInfo.cs
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.RazorTargetAssemblyInfo.cache
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.dll
+C:\Users\vikto\develop\ImageResizeService\ImageResizeService\obj\Debug\netcoreapp2.2\ImageResizeService.pdb
