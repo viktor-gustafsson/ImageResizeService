@@ -1,6 +1,7 @@
 ﻿using ImageResizeService.Infrastructure;
 using ImageResizeService.Services;
 using ImageResizeService.Services.ImageProcessor;
+using ImageResizeService.Services.ImageService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,8 @@ namespace ImageResizeService
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //Add services
-//            services.AddScoped<IImageProcessor, ImageSharp>();
-            services.AddScoped<IImageProcessor, Drawing>();
-            
+            services.AddScoped<IImageProcessor, ImageProcessor>();
+            services.AddSingleton<IImageService, ImageService>();
             //Configure settings
             services.ConfigureSettings<HttpClientRetrySettings>(Configuration.GetSection("RetrySettings"));
         }
