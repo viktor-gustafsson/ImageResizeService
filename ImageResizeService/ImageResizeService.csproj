@@ -6,11 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
         <PackageReference Include="Polly" Version="7.1.0" />
-        <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
+        <PackageReference Include="SkiaSharp" Version="1.68.0" />
     </ItemGroup>
 
 </Project>
