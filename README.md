@@ -4,11 +4,11 @@ Imagerecropperandresizer is a .Net Core web api that handles image cropping and 
 
 The application targets .Net Core 2.2
 
-##
+## Master
 Master branch is making use of the SixLabors.ImageSharp nuget package for image mutation.
-##
+## Drawing
 Drawing branch is making use of the System.Drawing implementation port to .Net Core for image mutation
-##
+## SkiaSharp
 SkiaSharp branch is making use of the SkiaSharp nuget package for image mutation 
 
 There is a Polly implementation as well to handle retrying to get images from the source.
