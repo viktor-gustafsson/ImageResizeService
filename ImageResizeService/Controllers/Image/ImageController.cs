@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using ImageResizeService.Controllers.Image.Models;
 using ImageResizeService.Services.ImageProcessor;
