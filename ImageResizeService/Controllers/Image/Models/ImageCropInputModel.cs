@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using ImageResizeService.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using SkiaSharp;
 
 namespace ImageResizeService.Controllers.Image.Models
 {
@@ -27,7 +27,7 @@ namespace ImageResizeService.Controllers.Image.Models
         [FromQuery(Name = "heighttocrop")]
         public int HeightToCrop { get; set; }
         
-        public Point Point => new Point(X, Y);
-        public Size Size => new Size(Width, Height);
+        public SKPoint Point => new SKPoint(X, Y);
+        public SKSize Size => new SKSize(Width, Height);
     }
 }

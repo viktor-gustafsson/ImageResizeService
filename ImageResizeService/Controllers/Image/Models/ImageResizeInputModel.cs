@@ -1,9 +1,9 @@
-using System.Drawing;
+using SkiaSharp;
 
 namespace ImageResizeService.Controllers.Image.Models
 {
     public class ImageResizeInputModel : ImageConversionBaseModel
     {
-        public Size Size => new Size(Width,Height);
+        public SKSize Size => new SKSize(Width,Height);
     }
 }
