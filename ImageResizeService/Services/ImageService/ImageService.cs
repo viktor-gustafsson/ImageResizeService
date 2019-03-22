@@ -34,26 +34,44 @@ namespace ImageResizeService.Services.ImageService
             var skBitmap = SKBitmap.Decode(imageAsBytes);
             return skBitmap;
         }
-        
-        public async Task<ModifiedImage> SaveImage(SKBitmap image, Guid originalMimeTypeGuid)
+
+        public async Task<ModifiedImage> SaveImage(SKSurface surface, SKEncodedImageFormat format)
         {
-            throw new NotImplementedException();
-            
-//            return await Task.Run(() =>
-//            {
-//                using (var imageAsStream = new MemoryStream())
-//                {
-//                    image.Save(imageAsStream, image.RawFormat);
-//
-//                    var mimeType = ImageCodecInfo.GetImageEncoders()
-//                        .First(info => info.FormatID == originalMimeTypeGuid).MimeType;
-//
-//                    return new ModifiedImage(mimeType,
-//                        imageAsStream.ToArray());
-//                }
-//            });
+            switch (format)
+            {
+                case SKEncodedImageFormat.Jpeg:
+                    return await SaveImageAsJpeg(surface);
+                case SKEncodedImageFormat.Png:
+                    return await SaveImageAsPng(surface);
+                default:
+                    throw new Exception();
+            }
         }
         
+        private async Task<ModifiedImage> SaveImageAsJpeg(SKSurface surface)
+        {
+            using (var encodedImage = surface.Snapshot())
+            {
+                return await Task.Run(() =>
+                {
+                    var data = encodedImage.Encode(SKEncodedImageFormat.Jpeg, 100);
+                    return new ModifiedImage("image/jpeg", data.ToArray());
+                });
+            }
+        }
+
+        private async Task<ModifiedImage> SaveImageAsPng(SKSurface surface)
+        {
+            using (var encodedImage = surface.Snapshot())
+            {
+                return await Task.Run(() =>
+                {
+                    var data = encodedImage.Encode(SKEncodedImageFormat.Png, 0);
+                    return new ModifiedImage("image/png", data.ToArray());
+                });
+            }
+        }
+
         private async Task<byte[]> GetImageFromSourceAsStream(string imageUrl)
         {
             return await _retryPolicy.ExecuteAsync(async () =>
