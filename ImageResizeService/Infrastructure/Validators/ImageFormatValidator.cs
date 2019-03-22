@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace ImageResizeService.Infrastructure
+namespace ImageResizeService.Infrastructure.Validators
 {
     public class ImageFormatValidator : Attribute, IModelValidator
     {

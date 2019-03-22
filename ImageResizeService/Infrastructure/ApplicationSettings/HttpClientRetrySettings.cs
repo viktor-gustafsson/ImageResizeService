@@ -1,4 +1,4 @@
-namespace ImageResizeService.Infrastructure
+namespace ImageResizeService.Infrastructure.ApplicationSettings
 {
     public class HttpClientRetrySettings
     {

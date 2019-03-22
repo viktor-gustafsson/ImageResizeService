@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using ImageResizeService.Infrastructure;
+using ImageResizeService.Infrastructure.Validators;
 using Microsoft.AspNetCore.Mvc;
 using SkiaSharp;
 

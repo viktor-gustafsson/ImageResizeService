@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ImageResizeService.Infrastructure;
+using ImageResizeService.Infrastructure.ApplicationSettings;
 using ImageResizeService.Services.ImageProcessor.Models;
 using Polly;
 using Polly.Retry;

@@ -2,7 +2,7 @@ using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ImageResizeService.Infrastructure
+namespace ImageResizeService.Infrastructure.ApplicationSettings
 {
     public static class ServiceCollectionExtensions
     {

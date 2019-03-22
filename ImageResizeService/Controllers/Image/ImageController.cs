@@ -30,16 +30,9 @@ namespace ImageResizeService.Controllers.Image
         [HttpGet]
         public async Task<IActionResult> Crop([FromQuery] ImageCropInputModel imageCropInputModel)
         {
-            try
-            {
-                var modifiedImage = await _imageProcessor.CropImage(imageCropInputModel);
+            var modifiedImage = await _imageProcessor.CropImage(imageCropInputModel);
 
-                return File(modifiedImage.ImageAsBytes, modifiedImage.ImageFormat);
-            }
-            catch (ArgumentException e)
-            {
-                return BadRequest(e.Message);
-            }
+            return File(modifiedImage.ImageAsBytes, modifiedImage.ImageFormat);
         }
     }
 }

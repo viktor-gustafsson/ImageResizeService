@@ -1,4 +1,4 @@
-﻿using ImageResizeService.Infrastructure;
+﻿using ImageResizeService.Infrastructure.ApplicationSettings;
 using ImageResizeService.Services.ImageProcessor;
 using ImageResizeService.Services.ImageService;
 using Microsoft.AspNetCore.Builder;
