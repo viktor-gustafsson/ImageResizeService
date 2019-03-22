@@ -1,5 +1,3 @@
-using System;
-using System.Drawing;
 using System.Threading.Tasks;
 using ImageResizeService.Services.ImageProcessor.Models;
 using SkiaSharp;
