@@ -21,11 +21,10 @@ namespace ImageResizeService.Services.ImageProcessor
 
             var info = new SKImageInfo(imageResizeInputModel.Width, imageResizeInputModel.Height);
             var encoding = imageResizeInputModel.GetEncoding();
-            
+
             using (var surface = SKSurface.Create(info))
             {
-                var surfaceCanvas = surface.Canvas;
-                surfaceCanvas.DrawBitmap(image, new SKRect(0, 0, image.Width, image.Height),
+                surface.Canvas.DrawBitmap(image, new SKRect(0, 0, image.Width, image.Height),
                     new SKRect(0, 0, imageResizeInputModel.Width, imageResizeInputModel.Height));
 
                 return await _imageService.SaveImage(surface, encoding);
@@ -38,11 +37,12 @@ namespace ImageResizeService.Services.ImageProcessor
 
             var info = new SKImageInfo(imageCropInputModel.Width, imageCropInputModel.Height);
             var encoding = imageCropInputModel.GetEncoding();
-            
+
             using (var surface = SKSurface.Create(info))
             {
-                var surfaceCanvas = surface.Canvas;
-                surfaceCanvas.DrawBitmap(image, new SKRect(imageCropInputModel.Left, imageCropInputModel.Top, imageCropInputModel.Right, imageCropInputModel.Bottom),
+                surface.Canvas.DrawBitmap(image,
+                    new SKRect(imageCropInputModel.Left, imageCropInputModel.Top, imageCropInputModel.Right,
+                        imageCropInputModel.Bottom),
                     new SKRect(0, 0, imageCropInputModel.Width, imageCropInputModel.Height));
                 return await _imageService.SaveImage(surface, encoding);
             }

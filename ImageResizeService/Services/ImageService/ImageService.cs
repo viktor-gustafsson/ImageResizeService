@@ -23,7 +23,7 @@ namespace ImageResizeService.Services.ImageService
                 .WaitAndRetryAsync(httpClientRetrySettings.MaxRetryAttempts,
                     i => TimeSpan.FromMilliseconds(httpClientRetrySettings.TimeOutInMilliseconds));
         }
-        
+
         public async Task<SKBitmap> GetImage(string url)
         {
             var imageAsBytes = await GetImageFromSourceAsStream(url);
@@ -43,7 +43,7 @@ namespace ImageResizeService.Services.ImageService
                     throw new Exception();
             }
         }
-        
+
         private async Task<ModifiedImage> SaveImageAsJpeg(SKSurface surface)
         {
             using (var encodedImage = surface.Snapshot())
