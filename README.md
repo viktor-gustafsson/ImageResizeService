@@ -11,7 +11,6 @@ There is a Polly implementation to handle retry logic when getting images from t
 It is very easy to install and deploy in a Docker container.
 
 ```sh
-cd ImageResizeService
 docker build -t ImageResizeService -f ImageResizeService/Dockerfile .
 ```
 
