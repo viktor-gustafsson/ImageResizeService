@@ -11,9 +11,7 @@ namespace ImageResizeService.Infrastructure
         {
             var input = (int)context.Model;
             if (input > 0)
-            {
                 return Enumerable.Empty<ModelValidationResult>();
-            }
 
             return new List<ModelValidationResult>
             {
