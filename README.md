@@ -20,14 +20,6 @@ Once done, run the Docker image and map the port to whatever you wish on your ho
 docker run -p 5000:80 -e ASPNETCORE_URLS=http://+:80 ImageResizeService
 ```
 
-# Other branches
-
-## ImageSharp
-ImageSharp branch is making use of the SixLabors.ImageSharp nuget package for image mutation.
-## Drawing
-Drawing branch is making use of the System.Drawing implementation port to .net Core for image mutation
-
-
 # Endpoints
 All height and width values must be possitive integers larger than 0.
 
@@ -52,3 +44,10 @@ left(int) - left edge of crop box
 right(int) - right edge of crop box
 bottom(int) - bottom edge of crop box
 ```
+
+# Other branches
+
+## ImageSharp
+ImageSharp branch is making use of the SixLabors.ImageSharp nuget package for image mutation.
+## Drawing
+Drawing branch is making use of the System.Drawing implementation port to .net Core for image mutation
