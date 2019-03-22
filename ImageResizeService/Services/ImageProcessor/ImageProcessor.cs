@@ -32,9 +32,20 @@ namespace ImageResizeService.Services.ImageProcessor
             }
         }
 
-        public Task<ModifiedImage> CropImage(ImageCropInputModel imageCropInputModel)
+        public async Task<ModifiedImage> CropImage(ImageCropInputModel imageCropInputModel)
         {
-            throw new System.NotImplementedException();
+            var image = await _imageService.GetImage(imageCropInputModel.Url);
+
+            var info = new SKImageInfo(imageCropInputModel.Width, imageCropInputModel.Height);
+            var encoding = imageCropInputModel.GetEncoding();
+            
+            using (var surface = SKSurface.Create(info))
+            {
+                var surfaceCanvas = surface.Canvas;
+                surfaceCanvas.DrawBitmap(image, new SKRect(imageCropInputModel.Left, imageCropInputModel.Top, imageCropInputModel.Right, imageCropInputModel.Bottom),
+                    new SKRect(0, 0, imageCropInputModel.Width, imageCropInputModel.Height));
+                return await _imageService.SaveImage(surface, encoding);
+            }
         }
     }
 }
