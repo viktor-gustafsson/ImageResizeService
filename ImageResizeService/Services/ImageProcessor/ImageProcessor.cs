@@ -19,7 +19,7 @@ namespace ImageResizeService.Services.ImageProcessor
         {
             var image = await _imageService.GetImage(imageResizeInputModel.Url);
 
-            var info = new SKImageInfo(imageResizeInputModel.Height, imageResizeInputModel.Width);
+            var info = new SKImageInfo(imageResizeInputModel.Width, imageResizeInputModel.Height);
             var encoding = imageResizeInputModel.GetEncoding();
             
             using (var surface = SKSurface.Create(info))
