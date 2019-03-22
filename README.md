@@ -1,6 +1,6 @@
-# Imagecropperandresizer
+# ImageResizeService
 
-Imagerecropperandresizer is a .Net Core web api that handles image cropping and resizing.
+ImageResizeService is a .Net Core web api that handles image cropping and resizing.
 
 The application targets .Net Core 2.1
 The primary implementation is SkiaSharp and it unfortunatley needs to target .net core 2.1 to be able to run inside a docker container.
@@ -11,7 +11,7 @@ There is a Polly implementation to handle retry logic when getting images from t
 It is very easy to install and deploy in a Docker container.
 
 ```sh
-cd imagecropperandresizer
+cd ImageResizeService
 docker build -t ImageResizeService -f ImageResizeService/Dockerfile .
 ```
 
