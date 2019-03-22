@@ -30,7 +30,8 @@ namespace ImageResizeService.Infrastructure
             {
                 new ModelValidationResult(string.Empty,
                     "Invalid image format, supported formats are jpeg or png")
-            };;
+            };
+            ;
         }
     }
 }

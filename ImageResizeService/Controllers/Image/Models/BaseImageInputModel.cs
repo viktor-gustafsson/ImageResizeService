@@ -10,24 +10,24 @@ namespace ImageResizeService.Controllers.Image.Models
     {
         [Required]
         [Url]
-        [FromQuery(Name = "url")] 
+        [FromQuery(Name = "url")]
         public string Url { get; set; }
-        
+
         [Required]
         [SizeValidator]
-        [FromQuery(Name = "height")] 
+        [FromQuery(Name = "height")]
         public int Height { get; set; }
-        
+
         [Required]
         [SizeValidator]
-        [FromQuery(Name = "width")] 
+        [FromQuery(Name = "width")]
         public int Width { get; set; }
-        
+
         [Required]
         [ImageFormatValidator]
         [FromQuery(Name = "imageFormat")]
         public string ImageFormat { get; set; }
-        
+
         public SKEncodedImageFormat GetEncoding()
         {
             switch (ImageFormat.ToLower())
@@ -36,7 +36,7 @@ namespace ImageResizeService.Controllers.Image.Models
                     return SKEncodedImageFormat.Jpeg;
                 case "png":
                     return SKEncodedImageFormat.Png;
-                
+
                 default:
                     throw new InvalidOperationException("Could not map format string to SkEncodedImageFormat");
             }

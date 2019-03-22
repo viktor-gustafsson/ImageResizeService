@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using ImageResizeService.Controllers.Image.Models;
-using ImageResizeService.Services;
 using ImageResizeService.Services.ImageProcessor;
 using Microsoft.AspNetCore.Mvc;
 
