@@ -20,17 +20,16 @@ Once done, run the Docker image and map the port to whatever you wish on your ho
 docker run -p 5000:80 -e ASPNETCORE_URLS=http://+:80 ImageResizeService
 ```
 
-# Endpoints
-All height and width values must be possitive integers larger than 0.
+# Usage
 
 ## Shared query parameters
 ```
 These parameters are shared between both resize and crop endpoint.
 url(string) - url to image, needs to be url encoded.
-width(int) - new width.
-height(int) - new height.
+width(int) - new width, needs to be 0 or larger.
+height(int) - new height, needs to be 0 or larger.
 imageFormat(string) - format of the output image, supported types jpeg and png.
-jpegQuality(int) - OPTIONAL, only applies to jpeg images, if no value is supplied it will default to 100.
+jpegQuality(int) - OPTIONAL, needs to be between 0 and 100, only applies to jpeg images, if no value is supplied it will default to 100.
 ```
 
 ### api/image/resize
@@ -44,10 +43,10 @@ Image cropping is only done in the shape of a square.
 ```
 GET
 endpoint specific query parameters: 
-top(int) - top edge of crop box.
-left(int) - left edge of crop box.
-right(int) - right edge of crop box.
-bottom(int) - bottom edge of crop box.
+top(int) - top edge of crop box, needs to be 0 or larger.
+left(int) - left edge of crop box, needs to be 0 or larger.
+right(int) - right edge of crop box, needs to be 0 or larger.
+bottom(int) - bottom edge of crop box, needs to be 0 or larger.
 ```
 
 # Other branches
