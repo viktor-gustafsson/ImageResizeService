@@ -28,6 +28,10 @@ namespace ImageResizeService.Controllers.Image.Models
         [FromQuery(Name = "imageFormat")]
         public string ImageFormat { get; set; }
 
+        [QualityValidator]
+        [FromQuery(Name = "jpegQuality")]
+        public int JpegQuality { get; set; }
+
         public SKEncodedImageFormat GetEncoding()
         {
             switch (ImageFormat.ToLower())

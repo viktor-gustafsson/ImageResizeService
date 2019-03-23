@@ -7,6 +7,6 @@ namespace ImageResizeService.Services.ImageService
     public interface IImageService
     {
         Task<SKBitmap> GetImage(string url);
-        Task<ModifiedImage> SaveImage(SKSurface surface, SKEncodedImageFormat format);
+        Task<ModifiedImage> SaveImage(SKSurface surface, SKEncodedImageFormat format, int quality = 100);
     }
 }

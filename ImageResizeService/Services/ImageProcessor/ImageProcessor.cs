@@ -27,7 +27,7 @@ namespace ImageResizeService.Services.ImageProcessor
                 surface.Canvas.DrawBitmap(image, new SKRect(0, 0, image.Width, image.Height),
                     new SKRect(0, 0, imageResizeInputModel.Width, imageResizeInputModel.Height));
 
-                return await _imageService.SaveImage(surface, encoding);
+                return await _imageService.SaveImage(surface, encoding, imageResizeInputModel.JpegQuality);
             }
         }
 

@@ -31,12 +31,12 @@ namespace ImageResizeService.Services.ImageService
             return skBitmap;
         }
 
-        public async Task<ModifiedImage> SaveImage(SKSurface surface, SKEncodedImageFormat format)
+        public async Task<ModifiedImage> SaveImage(SKSurface surface, SKEncodedImageFormat format, int quality = 100)
         {
             switch (format)
             {
                 case SKEncodedImageFormat.Jpeg:
-                    return await SaveImageAsJpeg(surface);
+                    return await SaveImageAsJpeg(surface, quality);
                 case SKEncodedImageFormat.Png:
                     return await SaveImageAsPng(surface);
                 default:
@@ -44,13 +44,13 @@ namespace ImageResizeService.Services.ImageService
             }
         }
 
-        private async Task<ModifiedImage> SaveImageAsJpeg(SKSurface surface)
+        private async Task<ModifiedImage> SaveImageAsJpeg(SKSurface surface, int quality = 100)
         {
             using (var encodedImage = surface.Snapshot())
             {
                 return await Task.Run(() =>
                 {
-                    var data = encodedImage.Encode(SKEncodedImageFormat.Jpeg, 100);
+                    var data = encodedImage.Encode(SKEncodedImageFormat.Jpeg, quality);
                     return new ModifiedImage("image/jpeg", data.ToArray());
                 });
             }
