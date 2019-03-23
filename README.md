@@ -23,28 +23,31 @@ docker run -p 5000:80 -e ASPNETCORE_URLS=http://+:80 ImageResizeService
 # Endpoints
 All height and width values must be possitive integers larger than 0.
 
+## Shared query parameters
+```
+These parameters are shared between both resize and crop endpoint.
+url(string) - url to image, needs to be url encoded.
+width(int) - new width.
+height(int) - new height.
+imageFormat(string) - format of the output image, supported types jpeg and png.
+jpegQuality(int) - OPTIONAL, only applies to jpeg images, if no value is supplied it will default to 100.
+```
+
 ### api/image/resize
 ```
 GET
-query parameters: 
-url(string) - url to image
-width(int) - new width
-height(int) - new height
-jpegQuality(int) - OPTIONAL, only applies to jpeg images, if no value is supplied it will default to 100.
+endpoint specific query parameters:
 ```
+
 ### api/image/crop
 Image cropping is only done in the shape of a square.
 ```
 GET
-query parameters: 
-url(string) - url to image
-width(int) - width of final image
-height(int) - height of final image
-top(int) - top edge of crop box
-left(int) - left edge of crop box
-right(int) - right edge of crop box
-bottom(int) - bottom edge of crop box
-jpegQuality(int) - OPTIONAL, only applies to jpeg images, if no value is supplied it will default to 100.
+endpoint specific query parameters: 
+top(int) - top edge of crop box.
+left(int) - left edge of crop box.
+right(int) - right edge of crop box.
+bottom(int) - bottom edge of crop box.
 ```
 
 # Other branches
