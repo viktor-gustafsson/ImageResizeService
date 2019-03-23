@@ -30,6 +30,7 @@ query parameters:
 url(string) - url to image
 width(int) - new width
 height(int) - new height
+jpegQuality(int) - OPTIONAL, only applies to jpeg images, if no value is supplied it will default to 100.
 ```
 ### api/image/crop
 Image cropping is only done in the shape of a square.
@@ -43,6 +44,7 @@ top(int) - top edge of crop box
 left(int) - left edge of crop box
 right(int) - right edge of crop box
 bottom(int) - bottom edge of crop box
+jpegQuality(int) - OPTIONAL, only applies to jpeg images, if no value is supplied it will default to 100.
 ```
 
 # Other branches
