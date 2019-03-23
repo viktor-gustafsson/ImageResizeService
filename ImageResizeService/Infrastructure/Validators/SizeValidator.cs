@@ -10,13 +10,13 @@ namespace ImageResizeService.Infrastructure.Validators
         public IEnumerable<ModelValidationResult> Validate(ModelValidationContext context)
         {
             var input = (int) context.Model;
-            if (input > 0)
+            if (input < 0)
                 return Enumerable.Empty<ModelValidationResult>();
 
             return new List<ModelValidationResult>
             {
                 new ModelValidationResult(string.Empty,
-                    "Input value can not be less or equal to 0")
+                    "Input value can not be less than 0")
             };
         }
     }
