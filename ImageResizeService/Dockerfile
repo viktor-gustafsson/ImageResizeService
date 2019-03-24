@@ -7,21 +7,7 @@ COPY . .
 FROM build AS publish
 RUN dotnet publish ImageResizeService/ImageResizeService.csproj -c Release -o /app
 
-FROM ubuntu:16.04
-RUN apt-get -qq update && apt-get install -y libfontconfig1
-
-RUN apt-get update && \
-	apt-get install -y curl apt-transport-https wget unzip && \
-	rm -rf /var/lib/apt/lists/*
-
-RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
-RUN dpkg -i packages-microsoft-prod.deb
-
-RUN apt-get update && \
-	apt-get install -y \
-	apt-transport-https \
-	aspnetcore-runtime-2.1 && \
-	rm -rf /var/lib/apt/lists/*
+FROM microsoft/dotnet:${DOTNET_VERSION}-aspnetcore-runtime-alpine AS final
 
 WORKDIR /app
 COPY --from=publish /app .
