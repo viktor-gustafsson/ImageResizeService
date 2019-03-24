@@ -10,7 +10,7 @@ namespace ImageResizeService.Infrastructure.Validators
         public IEnumerable<ModelValidationResult> Validate(ModelValidationContext context)
         {
             var input = (int) context.Model;
-            if (input < 0)
+            if (input > 0)
                 return Enumerable.Empty<ModelValidationResult>();
 
             return new List<ModelValidationResult>
