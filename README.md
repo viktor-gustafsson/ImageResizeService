@@ -11,13 +11,13 @@ There is a Polly implementation to handle retry logic when getting images from t
 It is very easy to install and deploy in a Docker container.
 
 ```sh
-docker build -t ImageResizeService -f ImageResizeService/Dockerfile .
+docker build -t imageresizeservice -f ImageResizeService/Dockerfile .
 ```
 
 Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 5000 of the host to port 80 of the Docker (or whatever port was exposed in the Dockerfile):
 
 ```sh
-docker run -p 5000:80 -e ASPNETCORE_URLS=http://+:80 ImageResizeService
+docker run -p 5000:80 -e ASPNETCORE_URLS=http://+:80 imageresizeservice
 ```
 
 # Usage
