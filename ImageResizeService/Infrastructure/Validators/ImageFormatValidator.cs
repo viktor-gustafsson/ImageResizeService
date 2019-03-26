@@ -9,9 +9,7 @@ namespace ImageResizeService.Infrastructure.Validators
     {
         public IEnumerable<ModelValidationResult> Validate(ModelValidationContext context)
         {
-            if (!(context.Model is string input))
-                return GetError();
-
+            var input = (string) context.Model;
             var lower = input.ToLower();
             switch (lower)
             {
@@ -31,7 +29,6 @@ namespace ImageResizeService.Infrastructure.Validators
                 new ModelValidationResult(string.Empty,
                     "Invalid image format, supported formats are jpeg or png")
             };
-            ;
         }
     }
 }

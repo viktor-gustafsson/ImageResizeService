@@ -10,9 +10,11 @@ namespace ImageResizeService.Infrastructure.Validators
         public IEnumerable<ModelValidationResult> Validate(ModelValidationContext context)
         {
             var input = (int) context.Model;
-            if (input > 0)
-                return Enumerable.Empty<ModelValidationResult>();
+            return input > 0 ? Enumerable.Empty<ModelValidationResult>() : GetError();
+        }
 
+        private static IEnumerable<ModelValidationResult> GetError()
+        {
             return new List<ModelValidationResult>
             {
                 new ModelValidationResult(string.Empty,

@@ -13,6 +13,11 @@ namespace ImageResizeService.Infrastructure.Validators
             if (input >= 0 && input <= 100)
                 return Enumerable.Empty<ModelValidationResult>();
 
+            return GetError();
+        }
+
+        private static List<ModelValidationResult> GetError()
+        {
             return new List<ModelValidationResult>
             {
                 new ModelValidationResult(string.Empty,
