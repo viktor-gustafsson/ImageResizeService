@@ -9,7 +9,9 @@ namespace ImageResizeService.Infrastructure.Validators
     {
         public IEnumerable<ModelValidationResult> Validate(ModelValidationContext context)
         {
-            var input = (string) context.Model;
+            if (!(context.Model is string input))
+                return GetError();
+
             var lower = input.ToLower();
             switch (lower)
             {
