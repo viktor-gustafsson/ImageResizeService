@@ -19,13 +19,13 @@ namespace ImageResizeService.Services.ImageProcessor
         {
             var image = await _imageService.GetImage(imageResizeInputModel.Url);
 
-            var info = new SKImageInfo(imageResizeInputModel.Width, imageResizeInputModel.Height);
+            var info = GetImageInfo(imageResizeInputModel);
             var encoding = imageResizeInputModel.GetEncoding();
 
             using (var surface = SKSurface.Create(info))
             {
                 surface.Canvas.DrawBitmap(image, new SKRect(0, 0, image.Width, image.Height),
-                    new SKRect(0, 0, imageResizeInputModel.Width, imageResizeInputModel.Height));
+                    GetDestinationRectangle(imageResizeInputModel));
 
                 return await _imageService.SaveImage(surface, encoding, imageResizeInputModel.JpegQuality);
             }
@@ -35,17 +35,22 @@ namespace ImageResizeService.Services.ImageProcessor
         {
             var image = await _imageService.GetImage(imageCropInputModel.Url);
 
-            var info = new SKImageInfo(imageCropInputModel.Width, imageCropInputModel.Height);
+            var info = GetImageInfo(imageCropInputModel);
             var encoding = imageCropInputModel.GetEncoding();
 
             using (var surface = SKSurface.Create(info))
             {
                 surface.Canvas.DrawBitmap(image,
                     new SKRect(imageCropInputModel.Left, imageCropInputModel.Top, imageCropInputModel.Right,
-                        imageCropInputModel.Bottom),
-                    new SKRect(0, 0, imageCropInputModel.Width, imageCropInputModel.Height));
+                        imageCropInputModel.Bottom), GetDestinationRectangle(imageCropInputModel));
                 return await _imageService.SaveImage(surface, encoding);
             }
         }
+
+        private static SKRect GetDestinationRectangle(ImageConversionBaseModel inputModel) =>
+            new SKRect(0, 0, inputModel.Width, inputModel.Height);
+
+        private static SKImageInfo GetImageInfo(ImageConversionBaseModel inputModel) =>
+            new SKImageInfo(inputModel.Width, inputModel.Height);
     }
 }
