@@ -8,28 +8,19 @@ namespace ImageResizeService.Controllers.Image.Models
 {
     public class ImageConversionBaseModel
     {
-        [Required]
-        [Url]
-        [FromQuery(Name = "url")]
+        [Required, Url, FromQuery(Name = "url")]
         public string Url { get; set; }
 
-        [Required]
-        [SizeValidator]
-        [FromQuery(Name = "height")]
+        [Required, SizeValidator, FromQuery(Name = "height") ]
         public int Height { get; set; }
 
-        [Required]
-        [SizeValidator]
-        [FromQuery(Name = "width")]
+        [Required, SizeValidator, FromQuery(Name = "width")]
         public int Width { get; set; }
 
-        [Required]
-        [ImageFormatValidator]
-        [FromQuery(Name = "imageFormat")]
+        [Required, ImageFormatValidator, FromQuery(Name = "imageFormat")]
         public string ImageFormat { get; set; }
 
-        [QualityValidator]
-        [FromQuery(Name = "jpegQuality")]
+        [QualityValidator, FromQuery(Name = "jpegQuality")]
         public int JpegQuality { get; set; }
 
         public SKEncodedImageFormat GetEncoding()
