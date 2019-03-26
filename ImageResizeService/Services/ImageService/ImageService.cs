@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ImageResizeService.Infrastructure.ApplicationSettings;
+using ImageResizeService.Infrastructure.Exceptions;
 using ImageResizeService.Services.ImageProcessor.Models;
 using Polly;
 using Polly.Retry;
@@ -24,7 +25,7 @@ namespace ImageResizeService.Services.ImageService
                     i => TimeSpan.FromMilliseconds(httpClientRetrySettings.TimeOutInMilliseconds));
         }
 
-        public async Task<SKBitmap> GetImage(string url)
+        public async Task<SKBitmap> GetImageAsSkBitmap(string url)
         {
             var imageAsBytes = await GetImageFromSourceAsStream(url);
             var skBitmap = SKBitmap.Decode(imageAsBytes);
@@ -40,7 +41,7 @@ namespace ImageResizeService.Services.ImageService
                 case SKEncodedImageFormat.Png:
                     return await SaveImageAsPng(surface);
                 default:
-                    throw new Exception();
+                    throw new InvalidImageFormatException();
             }
         }
 
