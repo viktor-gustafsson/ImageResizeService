@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace ImageResizeService.Infrastructure.Validators
 {
-    public class QualityValidator : Attribute, IModelValidator
+    public class QualityValidator : ValidationAttribute, IModelValidator
     {
         public IEnumerable<ModelValidationResult> Validate(ModelValidationContext context)
         {
