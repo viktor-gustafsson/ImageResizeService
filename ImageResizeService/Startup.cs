@@ -17,6 +17,7 @@ namespace ImageResizeService
         }
 
         public IConfiguration Configuration { get; }
+        private const string CorsPolicyName = "DefaultPolicy";
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -29,7 +30,7 @@ namespace ImageResizeService
             services.ConfigureSettings<HttpClientRetrySettings>(Configuration.GetSection("RetrySettings"));
 
             services.AddCors(options =>
-                options.AddPolicy("DefaultPolicy", builder => builder.AllowAnyOrigin().WithMethods("GET")));
+                options.AddPolicy(CorsPolicyName, builder => builder.AllowAnyOrigin().WithMethods("GET")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,7 +40,7 @@ namespace ImageResizeService
             else
                 app.UseHsts();
 
-            app.UseCors("DefaultPolicy");
+            app.UseCors(CorsPolicyName);
 
             app.UseHttpsRedirection();
             app.UseMvc();
