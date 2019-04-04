@@ -20,6 +20,9 @@ namespace ImageResizeService.Controllers.Image
         [HttpGet]
         public async Task<IActionResult> ReSize([FromQuery] ImageResizeInputModel imageResizeInputModel)
         {
+            if (ModelState.IsValid)
+                return BadRequest(ModelState);
+            
             var modifiedImage = await _imageProcessor.ReSizeImage(imageResizeInputModel);
 
             return File(modifiedImage.ImageAsBytes, modifiedImage.ImageFormat);
@@ -29,6 +32,9 @@ namespace ImageResizeService.Controllers.Image
         [HttpGet]
         public async Task<IActionResult> Crop([FromQuery] ImageCropInputModel imageCropInputModel)
         {
+            if (ModelState.IsValid)
+                return BadRequest(ModelState);
+            
             var modifiedImage = await _imageProcessor.CropImage(imageCropInputModel);
 
             return File(modifiedImage.ImageAsBytes, modifiedImage.ImageFormat);
